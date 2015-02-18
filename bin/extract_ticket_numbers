@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+Encoding.default_external = Encoding::Windows_1252
+
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require "thor"
+require "extract_ticket_numbers"
+
+class ExtractTicketNumbersCli < Thor
+
+  desc "add_to_csv CSVFILE", "extract ticket numbers from and add them to CSVFILE"
+  def add_to_csv(path)
+    ExtractTicketNumbers.add_to_csv(path)
+  end
+end
+
+begin
+  ExtractTicketNumbersCli.start(ARGV)
+rescue
+  warn $!
+end
