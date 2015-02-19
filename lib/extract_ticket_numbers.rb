@@ -4,7 +4,6 @@ require 'csv'
 module ExtractTicketNumbers
 
   def self.add_to_csv(in_path, out_path = out_path_from(in_path))
-    puts out_path
     CSV.open(out_path, "wb", col_sep: ';') do |out_row|
       CSV.foreach(in_path, col_sep: ';', headers: false).each do |in_row|
         tickets = in_row.to_s.scan(/[a-zA-Z]+\-[0-9]+/)
